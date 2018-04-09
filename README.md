@@ -4,7 +4,7 @@ To access your instance:
 
 Open an SSH client. (find out how to connect using PuTTY for windows)
 
-Locate your private key file (server access.pem). The wizard automatically detects the key you used to launch the instance.
+Locate your private key file (serveraccess.pem). The wizard automatically detects the key you used to launch the instance.
 
 Your key must not be publicly viewable for SSH to work. Use this command if needed:
 
