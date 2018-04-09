@@ -1,5 +1,5 @@
 # Registration of Workshop Maps
-# Connecting to AWS Server
+## Connecting to AWS Server
 To access your instance:
 
 Open an SSH client. (find out how to connect using PuTTY for windows)
@@ -20,11 +20,11 @@ ssh -i "serveraccess.pem" ec2-user@ec2-18-217-202-156.us-east-2.compute.amazonaw
 
 Please note that in most cases the username above will be correct, however please ensure that you read your AMI usage instructions to ensure that the AMI owner has not changed the default AMI username.
 
-# Setting Up the Amazon server
+## Setting Up the Amazon server
 
 After SSH connection to server follow the following instructions
 
-## Installing GDAL
+### Installing GDAL
   cd ~
   
   sudo yum -y update
@@ -49,7 +49,7 @@ After SSH connection to server follow the following instructions
 
   tar zcvf ~/gdal-2.2.4-amz1.tar.gz *
 
-## Installing Node.js
+### Installing Node.js
   curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
   
   . ~/.nvm/nvm.sh
