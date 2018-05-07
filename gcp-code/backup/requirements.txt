@@ -1,9 +1,0 @@
-Flask==0.12
-jinja2==2.6
-gunicorn==19.7.1
-psycopg2==2.7.3
-webapp2==2.3
-pytz==2017.2
-webob==1.1.1
-werkzeug==0.11.10
-protorpc==0.12
