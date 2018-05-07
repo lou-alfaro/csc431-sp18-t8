@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+  <script src="https://sdk.amazonaws.com/js/aws-sdk-2.229.1.min.js"></script>
+
+</head>
+<body>
+
+  <!-- Modal Trigger -->
+  <a class="waves-effect waves-light btn modal-trigger" href="#upload-modal">Upload Registration Maps</a>
+
+  <!-- Modal Structure -->
+  <div id="upload-modal" class="modal">
+    <div class="modal-content">
+      <h4 class="center">Upload image</h4>
+      <form action="{{uploadURi}}" method="POST" enctype="multipart/form-data">
+        <div class="file-field input-field">
+          <div class="btn">
+            <span>File</span>
+            <input type="file" accept=".jpg, .jpeg, .png">
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+            <button class="btn waves-effect waves-light" type="submit" onclick="addPhoto(rawImages)">Submit
+              <i class="material-icons right">send</i>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+  <script>
+  $(function () {
+    $('#fileupload').fileupload({
+        dataType: 'json',
+        done: function (e, data) {
+            $.each(data.result.files, function (index, file) {
+                $('<p/>').text(file.name).appendTo(document.body);
+            });
+        }
+    });
+});
+</script>
+
+  </body>
+</html>
