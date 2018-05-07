@@ -24,13 +24,28 @@
     gcloud config set project [YOUR_PROJECT_ID]
 where [YOUR_PROJECT_ID] is the ID of the project you created.
 
-  8) Clone our repository: 
-  ```
-  git clone csc431-sp18-t8
-  ```
-  9) In the terminal, cd into the gcp-code folder in our repository.
+  8) Go to console.cloud.google.com
   
-  10) In the browser, go to: http://console.cloud.google.com
+  9) Navigate to App Engine
+  
+  10) click on select language
+  
+  11) Select python
+  
+  12) follow prompts on screen
+  
+  13) Wait for App Engine to finish loading
+  
+  14) Select cancel tutorial
+  
+  15) Set the bucket's default ACL to public-read, which enables users to see their uploaded images:
+  
+     gsutil defacl set public-read gs://[YOUR-BUCKET-NAME]
+
+  16) Clone our repository: 
+  
+    git clone csc431-sp18-t8
+  
   
   
 ### Configuration
@@ -44,23 +59,19 @@ where [YOUR_PROJECT_ID] is the ID of the project you created.
     
   3) Set the value of PROJECT_ID to your project ID, which is visible in the GCP Console.
   
-  4) Set the value of DATA_BACKEND to datastore.
+  4) Set the value of DATA_BACKEND to datastore
+  
+  5) Set the value of CLOUD_STORAGE_BUCKET to your Cloud Storage bucket name.
     
   5) Save and close config.py.
   
   Cloud Datastore is a fully managed service that is automatically initialized and connected to your App Engine app. No further configuration is required.
-    
-  ### Running the app on your local machine
-  1) Start a local web server:
-  ```
-  python main.py
-  ```
-  2) In web browser, enter this address:
-  ```
-  http://localhost:8080
-  ```
-  3) Press Control+C to exit the local web server
-    
-    
   
   
+### Deploying the app
+  1) Deploy the sample app.
+    
+    gcloud app deploy
+  2) In your web browser, enter this address. Replace [YOUR_PROJECT_ID] with your project ID:
+  
+    https://[YOUR_PROJECT_ID].appspot.com
