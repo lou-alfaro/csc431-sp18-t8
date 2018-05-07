@@ -4,6 +4,7 @@ var yArray = [];
 var long = [];
 var lat = [];
 var iterator = 0;
+var imageURL;
 
 // Retrieve photo
 
@@ -11,7 +12,7 @@ var iterator = 0;
 
 document.getElementById("editbtn").onclick = function spawnClickable() {
     newImage = document.createElement('img');
-    newImage.src = imageSource;    //make this the upload's 'e.target.result',  'e' being the parameter of the file when uploaded
+    newImage.src = "imageURL";    //make this the upload's 'e.target.result',  'e' being the parameter of the file when uploaded
     document.body.appendChild(newImage);   //after this it still needs to exit the *image upload modal* (also try to restric to a single upload at a time)
 
     newImage.addEventListener("mousedown", function (e) {
