@@ -100,7 +100,7 @@ After SSH connection to server follow the following instructions
   
   4) Download Google Cloud SDK: https://cloud.google.com/sdk/
   
-  5) Open a terminal
+  5) Open a terminal.
   
   6) Type in:
    ```
@@ -114,7 +114,7 @@ After SSH connection to server follow the following instructions
    If the project ID listed in the output is not the project that you intended to use for this tutorial, set the project by entering this command:
 
     gcloud config set project [YOUR_PROJECT_ID]
-where [YOUR_PROJECT_ID] is the ID of the project you created
+where [YOUR_PROJECT_ID] is the ID of the project you created.
 
   8) Clone our repository: 
   ```
@@ -122,6 +122,6 @@ where [YOUR_PROJECT_ID] is the ID of the project you created
   ```
   9) In terminal cd into gcp-code folder in our repository.
   
-  10) In browser, go to: http://console.cloud.google.com
+  10) In the browser, go to: http://console.cloud.google.com
   
   
