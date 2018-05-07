@@ -20,10 +20,10 @@ function addPhoto(albumName) {
     return alert('Please choose a file to upload first.');
   }
   var file = files[0];
-  var fileName = file.name;
+  var fileName = temp;
   var albumPhotosKey = encodeURIComponent(albumName) + '//';
 
-  var photoKey = albumPhotosKey + fileName;
+  var photoKey = fileName;
   s3.upload({
     Key: photoKey,
     Body: file,

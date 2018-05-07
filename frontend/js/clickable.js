@@ -5,9 +5,21 @@ var long = [];
 var lat = [];
 var iterator = 0;
 
+// Retrieve photo
+var params = {
+  Bucket: "csc431-sp18-workshop-maps",
+  Key : "temp"
+};
+var imageSource = s3.getObject(params, function(err, data) {
+  if (err) console.log(err, err.stack); // an error occured
+  else     console.log(data);           // successful response
+});
+
+
+
 document.getElementById("editbtn").onclick = function spawnClickable() {
     newImage = document.createElement('img');
-    newImage.src = "map-clickable.png";    //make this the upload's 'e.target.result',  'e' being the parameter of the file when uploaded
+    newImage.src = imageSource;    //make this the upload's 'e.target.result',  'e' being the parameter of the file when uploaded
     document.body.appendChild(newImage);   //after this it still needs to exit the *image upload modal* (also try to restric to a single upload at a time)
 
     newImage.addEventListener("mousedown", function (e) {
@@ -16,7 +28,7 @@ document.getElementById("editbtn").onclick = function spawnClickable() {
     	xArray[currenti] = e.offsetX;
     	yArray[currenti] = e.offsetY;
 
-    	var label, latitude, longitude, latbtn, longbtn;  //this looks really messy but its functional 
+    	var label, latitude, longitude, latbtn, longbtn;  //this looks really messy but its functional
 		label = document.createElement('modal');
 		label.appendChild(document.createTextNode('Point ' + currenti +  ' x: ' + xArray[currenti] + ' y: ' + yArray[currenti]));
 
@@ -29,10 +41,10 @@ document.getElementById("editbtn").onclick = function spawnClickable() {
 			lat[currenti] = latitude.value;
 		};
 		latbtn.innerHTML = 'Update latitude';
-		
 
 
-		
+
+
 		longitude = document.createElement('input');
 		longitude.type = 'text';
 		longbtn = document.createElement('button');
@@ -63,12 +75,10 @@ document.getElementById("editbtn").onclick = function spawnClickable() {
 				string += 'y: ' + yArray[i] + '<br>';
 				string += 'latitude: ' + lat[i] + '<br>';
 				string += 'longitude: ' + long[i] + '<br><br>';
-			} 
+			}
 			document.write(string); //instead of this, upload the data to server
 		};
 		finishbtn.innerHTML = 'Finish Editing';
 
 		document.body.appendChild(finishbtn);
 };
-
-
