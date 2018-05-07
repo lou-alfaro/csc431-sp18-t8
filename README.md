@@ -110,7 +110,7 @@ After SSH connection to server follow the following instructions
 
     gcloud config list
  
-   If the project ID listed in the output is not the project that you intended to use for this tutorial, set the project by entering this command:
+   If the project ID listed in the output is not the project that you intended to use, set the project by entering this command:
 
     gcloud config set project [YOUR_PROJECT_ID]
 where [YOUR_PROJECT_ID] is the ID of the project you created.
