@@ -106,8 +106,7 @@ After SSH connection to server follow the following instructions
    ```
    gcloud auth application-default login
    ```
-  7) 
-  Verify that your default project is correct:
+  7) Verify that your default project is correct:
 
     gcloud config list
  
