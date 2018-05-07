@@ -119,7 +119,7 @@ where [YOUR_PROJECT_ID] is the ID of the project you created.
   ```
   git clone csc431-sp18-t8
   ```
-  9) In the terminal, cd into gcp-code folder in our repository.
+  9) In the terminal, cd into the gcp-code folder in our repository.
   
   10) In the browser, go to: http://console.cloud.google.com
   
