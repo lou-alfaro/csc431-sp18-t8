@@ -6,14 +6,6 @@ var lat = [];
 var iterator = 0;
 
 // Retrieve photo
-var params = {
-  Bucket: "csc431-sp18-workshop-maps",
-  Key : "temp"
-};
-var imageSource = s3.getObject(params, function(err, data) {
-  if (err) console.log(err, err.stack); // an error occured
-  else     console.log(data);           // successful response
-});
 
 
 

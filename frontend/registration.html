@@ -21,7 +21,7 @@
   <div id="upload-modal" class="modal">
     <div class="modal-content">
       <h4 class="center">Upload image</h4>
-      <form name="form">
+      <form action="{{uploadURi}}" method="POST" enctype="multipart/form-data">
         <div class="file-field input-field">
           <div class="btn">
             <span>File</span>
@@ -40,9 +40,6 @@
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="js/vendor/jquery.ui.widget.js"></script>
-  <script src="js/jquery.iframe-transport.js"></script>
-  <script src="js/jquery.fileupload.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
   <script>
