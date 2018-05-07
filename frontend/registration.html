@@ -1,26 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/wsmap-upload.css">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/dropzone.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
 
-<button id="upload-button">Upload File</button>
+  <!-- Modal Trigger -->
+  <a class="waves-effect waves-light btn modal-trigger" href="#upload-modal">Upload Registration Maps</a>
 
-<!-- The Modal -->
-<div id="modal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <input type="file" id="myFile" multiple size="50" onchange="myFunction()">
-
-    <p id="demo"></p>
+  <!-- Modal Structure -->
+  <div id="upload-modal" class="modal">
+    <div class="modal-content">
+      <h4 class="center">Upload files</h4>
+      <form action="/file-upload"
+      class="dropzone"
+      id="uploadDropzone"></form>
+    </div>
   </div>
-</div>
 
-<script src="scripts/wsmap-upload.js"></script>
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+  <script src="js/dropzone.js"></script>
 
-</body>
+  </body>
 </html>
