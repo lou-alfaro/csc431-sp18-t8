@@ -33,3 +33,34 @@ where [YOUR_PROJECT_ID] is the ID of the project you created.
   10) In the browser, go to: http://console.cloud.google.com
   
   
+### Configuration
+  
+  1) Open gcp folder in our repository:
+  ```
+  cd gcp-code/
+  ```
+  
+  2) Open config.py for editing.
+    
+  3) Set the value of PROJECT_ID to your project ID, which is visible in the GCP Console.
+  
+  4) Set the value of DATA_BACKEND to datastore.
+    
+  5) Save and close config.py.
+  
+  Cloud Datastore is a fully managed service that is automatically initialized and connected to your App Engine app. No further configuration is required.
+    
+  ### Running the app on your local machine
+  1) Start a local web server:
+  ```
+  python main.py
+  ```
+  2) In web browser, enter this address:
+  ```
+  http://localhost:8080
+  ```
+  3) Press Control+C to exit the local web server
+    
+    
+  
+  
