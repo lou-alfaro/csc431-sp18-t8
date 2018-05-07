@@ -52,7 +52,7 @@ where [YOUR_PROJECT_ID] is the ID of the project you created.
   
   1) Open gcp folder in our repository:
   ```
-  cd gcp-code/
+  cd gcp-code/wkshp-maps-sp18
   ```
   
   2) Open config.py for editing.
