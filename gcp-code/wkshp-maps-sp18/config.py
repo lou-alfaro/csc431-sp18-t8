@@ -32,9 +32,9 @@ DATA_BACKEND = 'datastore'
 
 # Google Cloud Project ID. This can be found on the 'Overview' page at
 # https://console.developers.google.com
-PROJECT_ID = 'wkshp-maps-sp18'
+PROJECT_ID = 'wkshp-maps-t8'
 
 # Google Cloud Storage and upload settings.
-CLOUD_STORAGE_BUCKET = 'wkshp-maps-sp18.appspot.com'
+CLOUD_STORAGE_BUCKET = 'wkshp-maps-t8.appspot.com'
 MAX_CONTENT_LENGTH = 8 * 1024 * 1024
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])

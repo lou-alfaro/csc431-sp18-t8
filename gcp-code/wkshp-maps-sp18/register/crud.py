@@ -15,12 +15,11 @@
 from register import get_model, storage
 from flask import Blueprint, current_app, redirect, render_template, request, \
     url_for
-from PIL import Image, ImageFilter
-
-import os
-import gdal
-import urllib, cStringIO
-import json
+#from PIL import Image, ImageFilter
+#import os
+#import gdal
+#import urllib, cStringIO
+#import json
 
 crud = Blueprint('crud', __name__)
 
@@ -46,25 +45,41 @@ def upload_image_file(file):
     return public_url
 # [END upload_image_file]
 
-
 @crud.route("/")
-def list():
+def list_raw():
     token = request.args.get('page_token', None)
     if token:
         token = token.encode('utf-8')
 
-    maps, next_page_token = get_model().list(cursor=token)
+    maps, next_page_token = get_model().list_raw(cursor=token)
 
     return render_template(
         "list.html",
         maps=maps,
         next_page_token=next_page_token)
 
+@crud.route("/tiff")
+def list_tiff():
+    token = request.args.get('page_token', None)
+    if token:
+        token = token.encode('utf-8')
+
+    maps, next_page_token = get_model().list_tiff(cursor=token)
+
+    return render_template(
+        "list.html",
+        maps=maps,
+        next_page_token=next_page_token)
 
 @crud.route('/<id>')
 def view(id):
-    map = get_model().read(id)
+    map = get_model().read_raw(id)
+    if not map:
+        map = get_model().read_tiff(id)
+
     return render_template("view.html", map=map)
+
+
 
 
 @crud.route('/add', methods=['GET', 'POST'])
@@ -82,8 +97,7 @@ def add():
             data["imageUrl"] = image_url
         # [END image_url2]
 
-        data.append("{'refPoints':, {}}")
-        map = get_model().create(data)
+        map = get_model().create_raw(data)
 
         return redirect(url_for('.view', id=map['id']))
 
@@ -91,13 +105,15 @@ def add():
 
 @crud.route('/<id>/convert', methods=['GET', 'POST'])
 def convert(id):
-    map = get_model().read(id)
+    map = get_model().read_raw(id)
+    if not map:
+        map = get_model().read_tiff(id)
 
     if request.method == 'POST':
-        inFile = Image.open(cStringIO.StringIO(urllib.urlopen(map['imageUrl']).read()))
+        #inFile = Image.open(cStringIO.StringIO(urllib.urlopen(map['imageUrl']).read()))
 
-        gdalString = "gdal_translate " + str(inFile) + " " + "-of GTiff " + str(inFile) + ".tif"
-        os.system(gdalString)
+        #gdalString = "gdal_translate " + str(inFile) + " " + "-of GTiff " + str(inFile) + ".tif"
+        #os.system(gdalString)
         data = request.form.to_dict(flat=True)
 
         image_url = upload_image_file(request.files.get('image'))
@@ -105,30 +121,31 @@ def convert(id):
         if image_url:
             data['imageUrl'] = image_url
 
-        map = get_model().update(data, id)
+        map = get_model().update_raw(data, id)
 
         return redirect(url_for('.view', id=map['id']))
 
     return render_template("reference.html", action="Edit", map=map)
 
-@crud.route('/<id>/ref', methods=['GET', 'POST'])
-def ref(id):
-    map = get_model().read(id)
+@crud.route('/<id>/coord', methods=['GET', 'POST'])
+def coord(id):
+    map = get_model().read_raw(id)
+    if not map:
+        map = get_model().read_tiff(id)
 
     if request.method == 'POST':
         data = request.form.to_dict(flat=True)
 
-        image_url = upload_image_file(request.files.get('image'))
+        points = map["refPoints"]
 
-        if image_url:
-            data['imageUrl'] = image_url
-
-        map["refPoints"].append(data)
-        map = get_model().update(data, id)
+        if points:
+            map["refPoints"].append(data)
+        else:
+            map["refPoints"] = [data]
 
         return redirect(url_for('.registration', id=map['id']))
 
-    return render_template("reference.html", action="Edit", map=map)
+    return render_template("coord.html", action="Edit", map=map)
 
 
 @crud.route('/<id>/delete')

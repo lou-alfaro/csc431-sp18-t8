@@ -4,14 +4,14 @@
 {% block content %}
 <h3>{{action}} map</h3>
 
-<script>
-    document.getElementById('add-ref').style.display = "none";
-
-    document.getElementById('img').addEventListener("mousedown", function (e) {
-        document.getElementById("valX").value = e.offsetX;
-        document.getElementById("valY").value = e.offsetY;
-    });
-</script>
+<div class="media-left">
+  {% if map.imageUrl %}
+    <img class="map-image" id="img" src="{{map.imageUrl}}">
+  {% else %}
+    <img class="map-image" src="http://placekitten.com/g/128/192">
+  {% endif %}
+</div>
+<span id="marker" class="glyphicon glyphicon-map-marker"></span>
 
 <form method="POST" enctype="multipart/form-data">
 
@@ -38,5 +38,24 @@
   <button type="submit" class="btn btn-success">Add Reference</button>
 </form>
 
+<script>
+    document.getElementById('img').addEventListener("mousedown", function (e) {
+        document.getElementById("valX").value = e.offsetX;
+        document.getElementById("valY").value = e.offsetY;
+
+        marker = document.getElementById('marker');
+        marker.remove();
+        with(marker) {
+            style.left = e.pageX + 'px';
+            style.top = e.pageY + 'px';
+            style.display = 'block';
+        }
+    });
+</script>
+
 {% endblock %}
 {# [END form] #}
+
+<!-- <a href="#">
+          <span class="glyphicon glyphicon-map-marker"></span>
+        </a> -->

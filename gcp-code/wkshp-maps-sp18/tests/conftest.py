@@ -81,7 +81,7 @@ def delete_all_maps(model):
         if not maps:
             break
         for map in maps:
-            model.delete(maps['id'])
+            model.delete(map)
 
 def flaky_filter(info, *args):
     """Used by flaky to determine when to re-run a test case."""

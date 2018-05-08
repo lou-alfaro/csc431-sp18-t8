@@ -31,7 +31,7 @@ class TestCrudActions(object):
 
     def test_list(self, app, model):
         for i in range(1, 12):
-            model.create({'name': u'Map {0}'.format(i)})
+            model.create({'name': u'Raw {0}'.format(i)})
 
         with app.test_client() as c:
             rv = c.get('/maps/')
@@ -40,7 +40,7 @@ class TestCrudActions(object):
 
         body = rv.data.decode('utf-8')
         assert 'Map 1' in body, "Should show maps"
-        assert len(re.findall('<h4>Map', body)) == 10, (
+        assert len(re.findall('<h4>Raw', body)) == 10, (
             "Should not show more than 10 maps")
         assert 'More' in body, "Should have more than one page"
 
@@ -55,20 +55,6 @@ class TestCrudActions(object):
         assert rv.status == '200 OK'
         body = rv.data.decode('utf-8')
         assert 'Test Map' in body
-
-    def test_edit(self, app, model):
-        existing = model.create({'name': "Temp Name"})
-
-        with app.test_client() as c:
-            rv = c.post(
-                '/maps/%s/edit' % existing['id'],
-                data={'name': 'Updated Name'},
-                follow_redirects=True)
-
-        assert rv.status == '200 OK'
-        body = rv.data.decode('utf-8')
-        assert 'Updated Name' in body
-        assert 'Temp Name' not in body
 
     def test_delete(self, app, model):
         existing = model.create({'name': "Temp Name"})

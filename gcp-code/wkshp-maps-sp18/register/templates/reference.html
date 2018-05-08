@@ -28,26 +28,15 @@
   {% endif %}
 </div>
 
-<a href="/maps/{{map.id}}/ref" id="add-ref" class="btn btn-success btn-sm">
+<a href="/maps/{{map.id}}/coord" id="add-ref" class="btn btn-success btn-sm">
   <i class="glyphicon glyphicon-plus"></i>
-    Add Lat/Long
+    Add Reference Point
 </a>
 
 <form method="POST" enctype="multipart/form-data">
-
   <div class="form-group">
     <label for="name">Name</label>
     <input type="text" name="name" id="name" value="{{map.name}}" class="form-control"/>
-  </div>
-
-  <div class="form-group hidden">
-    <label for="imageUrl">Map URL</label>
-    <input type="text" name="imageUrl" id="imageUrl" value="{{map.imageUrl}}" class="form-control"/>
-  </div>
-
-  <div class="form-group hidden">
-    <label for="refPoints">Map Reference Points</label>
-    <input type="text" name="refPoints" id="refPoints" value="{{map.refPoints}}" class="form-control"/>
   </div>
 
   <button type="submit" class="btn btn-success">Convert to GeoTIFF</button>
